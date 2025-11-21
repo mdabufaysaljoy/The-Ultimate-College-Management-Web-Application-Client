@@ -64,7 +64,7 @@ const SetTutionFees = () => {
     };
     try {
       const response = await axiosSecure.post("/fee-setting", finalData);
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.success) {
         Swal.fire({
           title: response.data.message,

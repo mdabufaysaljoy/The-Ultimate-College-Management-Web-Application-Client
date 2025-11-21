@@ -17,7 +17,7 @@ const StudentPaymentHistory = () => {
       return response.data;
     },
   });
-  console.log(studentPayments);
+  // console.log(studentPayments);
   return (
     <div className="overflow-x-auto">
       <table className="table">

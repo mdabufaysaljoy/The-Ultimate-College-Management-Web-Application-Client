@@ -31,7 +31,7 @@ const useAuth = () => {
         }
       })
       .catch((err) => {
-        console.log("email signup error", err.message);
+        // console.log("email signup error", err.message);
         Swal.fire({
           icon: "error",
           title: err.message,
@@ -43,10 +43,10 @@ const useAuth = () => {
   const handleEmailLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
       })
       .catch((err) => {
-        console.log("email login error", err.message);
+        // console.log("email login error", err.message);
         Swal.fire({
           icon: "error",
           title: err.message,
@@ -58,7 +58,7 @@ const useAuth = () => {
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
-        console.log(result.user);
+        result.user;
 
         const saveToDatabase = await axiosPublic.post("/users", {
           email: result.user?.email,
@@ -74,7 +74,7 @@ const useAuth = () => {
         }
       })
       .catch((err) => {
-        console.log("google login error", err.message);
+        // console.log("google login error", err.message);
       });
   };
   //? github login function

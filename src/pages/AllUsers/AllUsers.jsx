@@ -66,7 +66,7 @@ const AllUsers = () => {
   };
   const handleMakeAdmin = async (id) => {
     const makeAdminRes = await axiosSecure.patch(`/users/makeAdmin/${id}`);
-    console.log(makeAdminRes.data);
+    // console.log(makeAdminRes.data);
     if (makeAdminRes.data.acknowledged) {
       Swal.fire({
         title: "user role changed successfully!",

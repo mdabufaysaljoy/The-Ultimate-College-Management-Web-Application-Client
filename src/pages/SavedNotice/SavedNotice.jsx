@@ -21,7 +21,7 @@ const SavedNotice = () => {
   const removeBookMark = async (id) => {
     try {
       const response = await axiosSecure.delete(`/saveNotice/${id}`);
-      console.log(response.data);
+      // console.log(response.data);
       refetchSavedNoticeByEmail();
     } catch (error) {
       console.log(error);

@@ -28,11 +28,11 @@ const useAxiosSecure = () => {
       },
       (err) => {
         const status = err.response.status;
-        console.log(
-          "error in response interseptors status code:",
-          err.response.data,
-          status
-        );
+        // console.log(
+        //   "error in response interseptors status code:",
+        //   err.response.data,
+        //   status
+        // );
         if (status === 401 || status === 403) {
           logout();
           navigate("/login");

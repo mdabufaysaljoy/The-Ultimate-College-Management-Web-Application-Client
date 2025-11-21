@@ -56,7 +56,7 @@ const Signup = () => {
         });
       }
     } catch (error) {
-      console.log("imgbb image upload error", error.message);
+      // console.log("imgbb image upload error", error.message);
     }
   };
   return (
