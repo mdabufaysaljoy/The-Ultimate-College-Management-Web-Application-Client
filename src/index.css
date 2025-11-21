@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Tiro+Bangla:ital@0;1&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+    --color-brand-blue: #567BD5;
+    --color-brand-navyblue: #112F6B;
+    --font-heading: Poppings;
+    --font-balooda-bangla: "Baloo Da 2";
+    --font-trio-bangla: "Trio Bangla";
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+   /*  colors: {
+     primary: "#567BD5",
+         secondary: "",
+         accent: "#FFFFFF",
+         neutral: "#000000",
+ }
+
+ ,
+
+   ,
+   fontFamily: {
+       sans: ["Inter", "Roboto", "sans-serif"], // body
+           heading: ["Poppins", "sans-serif"], // headings
+   }
+
+ */
