@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import Logo from "../../assets/header-logo.png";
 import DarkMode from "../DarkMode/DarkMode";
 import useAuth from "../../hooks/useAuth/useAuth";
 import NavProfile from "./NavProfile";
@@ -10,11 +10,11 @@ const Navbar = () => {
   const [isAdmin] = useAdmin();
   return (
     <>
-      <div className="w-full  sticky top-0 z-10 backdrop-blur-sm bg-brand-blue/90 text-white font-heading">
+      <div className="w-full  sticky top-0 z-10 backdrop-blur-sm bg-[#2F4858] text-white font-heading font-bold">
         <div className="max-w-7xl mx-auto navbar">
           <div className="navbar-start">
             <Link to="/">
-              <img src={Logo} alt="" className="w-12 md:w-22" />
+              <img src={Logo} alt="" className="w-18 md:w-28" />
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">

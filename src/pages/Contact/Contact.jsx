@@ -1,4 +1,7 @@
 import Swal from "sweetalert2";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdOutlinePhoneAndroid } from "react-icons/md";
 import SectionHeading from "../../components/SectionHeading/SectionHeading";
 import { useForm } from "react-hook-form";
 import ReCaptcha from "../../components/ReCaptcha/ReCaptcha";
@@ -6,6 +9,9 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 import useAuth from "../../hooks/useAuth/useAuth";
 import useContactMessage from "../../hooks/useContactMessage/useContactMessage";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
+import bgimage from "../../assets/contact-background.jpg";
+import { LocateIcon, LocationEditIcon } from "lucide-react";
 const Contact = () => {
   const { user } = useAuth();
   const [isValidCaptcha, setIsValidCaptcha] = useState(false);
@@ -19,7 +25,7 @@ const Contact = () => {
   } = useForm({
     defaultValues: {
       name: user ? user.displayName : "",
-      email: "email.com",
+      email: user ? user.email : "",
     },
   });
   const handleOnSubmit = async (data) => {
@@ -54,7 +60,34 @@ const Contact = () => {
     }
   }, [user, reset]);
   return (
-    <section id="contact" className="py-12">
+    <section id="contact" className="my-12">
+      <div
+        className="w-full h-[400px]  bg-cover bg-center mb-8 flex items-center ps-36 "
+        style={{ backgroundImage: `url(${bgimage})` }}
+      >
+        <div className="max-w-1/2 space-y-8">
+          <h2 className="text-5xl font-bold">Contact & Location</h2>
+          <div className="flex gap-2">
+            <FaLocationDot fontSize={50} />
+            <p className="text-xl font-semibold">
+              United City, Madani Avenue, Badda, Dhaka, <br /> Dhaka 1212,
+              Bangladesh
+            </p>
+          </div>
+          <div className="text-lg text-white font-bold">
+            <div className="p-4 bg-brand flex items-center gap-6">
+              <FaPhoneAlt />
+              09604 848848
+            </div>
+            <div className="divider m-[-9px] p-0"></div>
+            <div className="p-4 bg-brand flex items-center gap-6">
+              <MdOutlinePhoneAndroid />
+              Admission Office: +8801759039498, +8801759039465, <br />{" "}
+              +8801759039451, +8801914001470, +8801550704732
+            </div>
+          </div>
+        </div>
+      </div>
       <SectionHeading>Contact Us</SectionHeading>
       <form
         onSubmit={handleSubmit(handleOnSubmit)}
@@ -130,13 +163,13 @@ const Contact = () => {
             </p>
           )}
         </div>
-        <button
+        <PrimaryButton
           disabled={!isValidCaptcha}
           type="submit"
-          className="btn btn-primary w-full"
+          className="w-full"
         >
           Submit
-        </button>
+        </PrimaryButton>
       </form>
     </section>
   );

@@ -29,6 +29,7 @@ import ViewMessage from "../pages/ViewMessage/ViewMessage";
 import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import StudentPaymentHistory from "../components/StudentPaymentHistory/StudentPaymentHistory";
 import Results from "../pages/Results/Results";
+import AdminPostedNotice from "../pages/PostNotice/AdminPostedNotice";
 
 const router = createBrowserRouter([
   {
@@ -61,16 +62,25 @@ const router = createBrowserRouter([
                 element: <Profile></Profile>,
               },
               {
+                path: "update",
+                element: <ProfileUpdate></ProfileUpdate>,
+              },
+              {
                 path: "tution-fees",
                 element: <TutionFees></TutionFees>,
               },
               {
                 path: "payment-history",
                 element: <StudentPaymentHistory></StudentPaymentHistory>,
-              }, {
-                path: 'results',
-                element: <Results></Results>
-              }
+              },
+              {
+                path: "results",
+                element: <Results></Results>,
+              },
+              {
+                path: "saved-notice",
+                element: <SavedNotice></SavedNotice>,
+              },
             ],
           },
           {
@@ -89,6 +99,7 @@ const router = createBrowserRouter([
                 path: "profile",
                 element: <Profile></Profile>,
               },
+              { path: "update", element: <ProfileUpdate></ProfileUpdate> },
               {
                 path: "set-tution-fees",
                 element: <SetTutionFees></SetTutionFees>,
@@ -104,6 +115,14 @@ const router = createBrowserRouter([
               {
                 path: "payment-history",
                 element: <PaymentHistory></PaymentHistory>,
+              },
+              {
+                path: "post-notice",
+                element: <PostNotice></PostNotice>,
+              },
+              {
+                path: "all-users",
+                element: <AllUsers></AllUsers>,
               },
             ],
           },
@@ -141,42 +160,7 @@ const router = createBrowserRouter([
         path: "signup",
         element: <Signup></Signup>,
       },
-      {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <Profile></Profile>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/profile/update",
-        element: (
-          <PrivateRoute>
-            <ProfileUpdate></ProfileUpdate>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/all-users",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <AllUsers></AllUsers>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/post-notice",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <PostNotice></PostNotice>
-            </AdminRoute>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/edit-notice/:id",
         element: (
@@ -187,14 +171,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/saved-notice",
-        element: (
-          <PrivateRoute>
-            <SavedNotice></SavedNotice>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/tution-fees",
         element: (

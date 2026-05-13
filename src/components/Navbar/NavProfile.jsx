@@ -50,7 +50,7 @@ const NavProfile = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-brand-blue rounded-box z-1 mt-3 w-52 p-2 shadow divide-y divide-black "
+        className="menu menu-sm dropdown-content bg-brand rounded-box z-1 mt-3 w-52 p-2 shadow divide-y divide-black "
       >
         {isAdmin ? (
           <>
@@ -62,7 +62,7 @@ const NavProfile = () => {
                     ? "bg-gray-900 justify-between py-2"
                     : "justify-between py-2"
                 }
-                to="/profile"
+                to="/dashboard/admin/profile"
               >
                 Profile
                 <span className="badge bg-green-500 border-none text-white">
@@ -71,22 +71,22 @@ const NavProfile = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/all-users">
+              <NavLink className="py-2" to="/dashboard/admin/all-users">
                 All Users
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/post-notice">
+              <NavLink className="py-2" to="/dashboard/admin/post-notice">
                 Post Notice
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/set-tution-fee">
+              <NavLink className="py-2" to="/dashboard/admin/set-tution-fees">
                 Set Tution Fees
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/">
+              <NavLink className="py-2" to="/dashboard/admin/settings">
                 Settings
               </NavLink>
             </li>
@@ -106,7 +106,7 @@ const NavProfile = () => {
                     ? "bg-gray-900 justify-between py-2"
                     : "justify-between py-2"
                 }
-                to="/profile"
+                to="/dashboard/student/profile"
               >
                 Profile
                 <span className="badge bg-green-500 border-none text-white">
@@ -120,7 +120,7 @@ const NavProfile = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2 flex justify-between" to="/saved-notice">
+              <NavLink className="py-2 flex justify-between" to="/dashboard/student/saved-notice">
                 Saved Notices
                 <span className="badge badge-accent text-white rounded-full">
                   {savedNoticeByEmail.length}
@@ -128,12 +128,12 @@ const NavProfile = () => {
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/tution-fees">
+              <NavLink className="py-2" to="/dashboard/student/tution-fees">
                 Tution Fees
               </NavLink>
             </li>
             <li className="py-2">
-              <NavLink className="py-2" to="/settings">
+              <NavLink className="py-2" to="/dashboard/student/settings">
                 Settings
               </NavLink>
             </li>

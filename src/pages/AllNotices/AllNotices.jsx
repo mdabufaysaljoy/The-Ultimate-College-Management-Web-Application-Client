@@ -15,11 +15,12 @@ const AllNotices = () => {
   const [allNotices, setAllNotices] = useState([]);
   const [currentpage, setCurrentPage] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-  const [pageLimit, setPageLimit] = useState(8);
+  const [pageLimit, setPageLimit] = useState(5);
   const [importanceType, setImportanceType] = useState("");
 
   useEffect(() => {
     const getAllNoticesFn = async () => {
+
       const pageForBackend = currentpage + 1;
       const getAllNotices = await axiosPublic.get(
         `/notices?page=${pageForBackend}&limit=${pageLimit}&importanceType=${importanceType}`
@@ -62,7 +63,7 @@ const AllNotices = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         {allNotices.map((notice, idx) => (
          <NoticeCard notice={notice} key={idx}/>
         ))}

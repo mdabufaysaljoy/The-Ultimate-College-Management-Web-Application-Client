@@ -19,7 +19,7 @@ const StudentPaymentHistory = () => {
   });
   // console.log(studentPayments);
   return (
-    <div className="overflow-x-auto">
+    <div className="h-screen overflow-auto">
       <table className="table">
         {/* head */}
         <thead>
@@ -29,6 +29,7 @@ const StudentPaymentHistory = () => {
             <th>Transection ID</th>
             <th>Amount</th>
             <th>Paid Via</th>
+            <th>Payment Date</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@ const StudentPaymentHistory = () => {
               </td>
               <td>{val.amountPaid}</td>
               <td>{val.paidWith}</td>
+              <td>{new Date(val.paymentDate).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

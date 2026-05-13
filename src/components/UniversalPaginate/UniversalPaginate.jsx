@@ -13,7 +13,7 @@ const UniversalPaginate = ({ pageCount, handlePageClick }) => {
       previousClassName="btn btn-sm btn-outline"
       nextClassName="btn btn-sm btn-outline"
       breakClassName="btn btn-sm btn-ghost"
-      activeClassName="btn-primary" // active page styling
+      activeClassName="btn-success hover:text-white" // active page styling
       disabledClassName="btn-disabled opacity-50 cursor-not-allowed"
     />
   );

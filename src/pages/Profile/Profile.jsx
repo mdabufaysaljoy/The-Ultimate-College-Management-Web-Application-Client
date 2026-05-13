@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useUsername from "../../hooks/useUsername/useUsername";
 import { useEffect, useState } from "react";
 import useAdmin from "./../../hooks/useAdmin/useAdmin";
+import PrimaryButton from "../../components/Buttons/PrimaryButton";
 
 const Profile = () => {
   const { user, handleEmailVerification } = useAuth();
@@ -20,7 +21,7 @@ const Profile = () => {
   }, [findUsername, user]);
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
-      <div className="w-full lg:w-1/2 bg-brand-blue p-8 space-y-4 rounded-2xl flex flex-col justify-center items-center">
+      <div className="w-full lg:w-1/2 bg-brand-blue text-white p-8 space-y-4 rounded-2xl flex flex-col justify-center items-center">
         {user?.photoURL ? (
           <img src={user?.photoURL} alt="" className="rounded-full size-60" />
         ) : (
@@ -32,7 +33,9 @@ const Profile = () => {
         )}
         <div className="flex items-center gap-5">
           <h3 className="text-3xl font-bold capitalize">{user?.displayName}</h3>
-          <span className="bg-emerald-500 px-2 rounded-lg font-semibold self-end">{isAdmin ? "Admin" : "Student"}</span>
+          <span className="bg-emerald-500 px-2 rounded-lg font-semibold self-end">
+            {isAdmin ? "Admin" : "Student"}
+          </span>
         </div>
         <div className="self-start flex flex-col gap-2 w-full">
           <p className="text-lg">
@@ -43,7 +46,7 @@ const Profile = () => {
             <p className="text-lg">
               <span className="font-bold">Email:</span> {user?.email}
             </p>
-            <span className="badge badge-success text-black text-sm">
+            <span className="badge badge-success font-bold text-sm">
               {user?.emailVerified ? "Verified" : "Non-verified"}
             </span>
           </div>
@@ -70,14 +73,18 @@ const Profile = () => {
             )}
           </div>
         </div>
+        <Link
+          to={
+            isAdmin
+              ? "/dashboard/admin/update"
+              : "/dashboard/student/update"
+          }
+          state={{ name: user?.displayName, email: user?.email }}
+          className="w-full"
+        >
+          <PrimaryButton className="w-full"> Update Profile</PrimaryButton>
+        </Link>
       </div>
-      <Link
-        to="/profile/update"
-        state={{ name: user?.displayName, email: user?.email }}
-        className="btn btn-secondary w-full lg:w-1/2 mt-4"
-      >
-        Update Profile
-      </Link>
     </div>
   );
 };

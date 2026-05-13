@@ -167,7 +167,7 @@ const Login = () => {
             </button>
           </div>
           <div className="divider"></div>
-          <p className="text-center">Don't have an account? <Link to="/signup" className="link">Register an account</Link></p>
+          <p className="text-center text-white">Don't have an account? <Link to="/signup" className="link">Register an account</Link></p>
         </div>
         <div className="flex-8">
           <Lottie loop={true} animationData={LoginJSON}/>

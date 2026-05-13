@@ -56,7 +56,7 @@ const Signup = () => {
         });
       }
     } catch (error) {
-      // console.log("imgbb image upload error", error.message);
+      console.log("imgbb image upload error", error.message);
     }
   };
   return (
@@ -250,8 +250,8 @@ const Signup = () => {
               Signup with GitHub
             </button>
           </div>
-          <div className="divider"></div>
-          <p className="text-center">
+          <div className="divider"> </div>
+          <p className="text-center text-white">
             Already have an account?{" "}
             <Link to="/login" className="link">
               Please login

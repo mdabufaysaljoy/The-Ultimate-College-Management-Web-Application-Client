@@ -37,6 +37,15 @@ const AdminDashboard = () => {
             </li>
             <li>
               <NavLink
+                to={"post-notice"}
+                className={({ isActive }) => (isActive ? "bg-black" : "")}
+              >
+                Post Notice
+              </NavLink>
+            </li>
+            
+            <li>
+              <NavLink
                 to={"set-tution-fees"}
                 className={({ isActive }) => (isActive ? "bg-black" : "")}
               >

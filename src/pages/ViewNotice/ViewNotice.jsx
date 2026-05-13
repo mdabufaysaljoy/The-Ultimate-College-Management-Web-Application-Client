@@ -41,11 +41,12 @@ const ViewNotice = () => {
     async function checkSavedStatus() {
       setIsLoading(true);
       if (!user) {
+        setIsLoading(false);
         return;
       }
       try {
         const res = await axiosSecure.get(
-          `/saveNotice/${_id}?email=${user.email}`
+          `/saveNotice/${_id}?email=${user.email}`,
         );
         setIsSaved(res.data?.isSaved);
       } catch (error) {
@@ -58,7 +59,7 @@ const ViewNotice = () => {
   }, [user, _id, axiosSecure]);
   return (
     <div className="py-12 space-y-8">
-      <h1 className="text-2xl text-center">View Full Notice</h1>
+      <h1 className="text-2xl text-center font-bold">View Full Notice</h1>
       <div className="bg-yellow-100 text-black p-8 rounded-md space-y-4  mx-auto">
         <h2 className="text-xl font-bold">{title}</h2>
         <div className="flex flex-col md:flex-row gap-3 justify-between capitalize">
@@ -94,7 +95,7 @@ const ViewNotice = () => {
           ) : (
             <Bookmark />
           )}
-          {isSaved ? "Saved" : "Save The Notice"}
+          {!user ? "Login to Save Notice" : isSaved ? "Saved" : "Save Notice"}
         </button>
       </div>
     </div>

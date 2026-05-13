@@ -82,7 +82,7 @@ const SetTutionFees = () => {
   return (
     <div className="py-12">
       <h1 className="text-3xl font-bold text-center">Set Tution Fee</h1>
-      <div className="w-full md:w-2/3 mx-auto bg-brand-blue mt-8 px-2 py-8 rounded-xl">
+      <div className="w-full md:w-2/3 mx-auto bg-brand-blue text-white mt-8 px-2 py-8 rounded-xl">
         <form
           onSubmit={handleSubmit}
           className="mx-auto w-fit flex flex-col items-start gap-4"

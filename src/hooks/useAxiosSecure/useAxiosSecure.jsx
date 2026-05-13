@@ -3,7 +3,7 @@ import useAuth from "../useAuth/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const axiosSecure = axios.create({
-  baseURL: "https://the-ultimate-college-management-web.onrender.com",
+  baseURL: "http://localhost:5000",
 });
 const useAxiosSecure = () => {
   const { logout } = useAuth();

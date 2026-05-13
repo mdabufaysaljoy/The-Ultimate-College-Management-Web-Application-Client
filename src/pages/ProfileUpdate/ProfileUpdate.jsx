@@ -15,7 +15,6 @@ const ProfileUpdate = () => {
   const axiosSecure = useAxiosSecure();
   const { handleFirebaseProfileUpdate } = useAuth();
   const [findUsername, refetchFindUsername] = useUsername();
-
   const {
     register,
     handleSubmit,
@@ -29,6 +28,7 @@ const ProfileUpdate = () => {
   });
   const onSubmit = async (data) => {
     const { username, name, profilePicture } = data;
+  
     const imageFile = new FormData();
     imageFile.append("image", profilePicture[0]);
 
@@ -86,20 +86,9 @@ const ProfileUpdate = () => {
   }, [findUsername, state, reset]);
   return (
     <div className="py-10">
-      <div className="breadcrumbs text-sm">
-        <ul>
-          <li>
-            <Link to={"/dashboard"}>Dashboard</Link>
-          </li>
-          <li>
-            <Link to={"/profile"}>Profile</Link>
-          </li>
-          <li>Update Profile</li>
-        </ul>
-      </div>
       <h1 className="text-3xl font-bold text-center">Update Profile</h1>
       <div className="w-full flex justify-center mt-6">
-        <div className="lg:w-1/2 bg-brand-blue p-6 rounded-lg">
+        <div className="lg:w-1/2 bg-brand-blue text-white p-6 rounded-lg">
           <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1">
               <label htmlFor="username">Username: </label>

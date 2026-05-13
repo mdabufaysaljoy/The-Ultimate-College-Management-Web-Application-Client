@@ -31,6 +31,7 @@ const months = [
 //   // baki gula default upcoming dhore nibo
 // };
 const currentMonthIndex = new Date().getMonth();
+const currentYear = new Date().getFullYear();
 
 const TutionFees = () => {
   const [studentPayments, setStudentPayment] = useState({});
@@ -71,16 +72,21 @@ const TutionFees = () => {
   useEffect(() => {
     async function getStudentPaymentByEmail() {
       const response = await axiosSecure.get(
-        `/student-payment/find-by-email/${user?.email}`
+        `/student-payment/find-by-email/${user?.email}`,
       );
       if (response.status === 200) {
         const manipulate = response.data.reduce((acc, cur) => {
-          const { month, paymentStatus } = cur;
-          acc[month] = paymentStatus;
+          const { month, paymentStatus, paymentDate } = cur;
+          acc[month] = {
+            paymentStatus,
+            year: new Date(paymentDate).getFullYear(),
+          };
+          // acc.year = new Date(paymentDate).getFullYear();
           // console.log(acc, cur, month, paymentStatus);
           return acc;
         }, {});
         setStudentPayment(manipulate);
+        // console.log(manipulate);
       }
     }
     if (user?.email) {
@@ -91,11 +97,11 @@ const TutionFees = () => {
   if (isLoading) {
     return <Loader />;
   }
-  // console.log(studentPayments["August"]);
+  console.log(studentPayments);
   return (
     <div className="py-8">
       <h1 className="text-4xl text-center pb-12 font-bold border-b">
-        Payment - {new Date().getFullYear()}
+        Payment - {currentYear}
       </h1>
       <div className="overflow-x-auto overflow-y-scroll h-[500px]">
         <table className="table table-pin-rows">
@@ -135,21 +141,18 @@ const TutionFees = () => {
                 </td>
                 <td>
                   <button
-                    className={`btn btn-sm  ${
-                      currentMonthIndex < idx &&
-                      studentPayments?.[month] !== "paid"
-                        ? ""
-                        : currentMonthIndex > idx &&
-                          studentPayments?.[month] === "paid"
-                        ? ""
-                        : currentMonthIndex === idx &&
-                          studentPayments?.[month] !== "paid"
-                        ? "bg-green-500"
-                        : "btn-warning"
-                    }`}
+                    className={`btn btn-sm  ${studentPayments[month]?.paymentStatus === "paid" &&
+                    studentPayments[month]?.year === currentYear
+                      ? "bg-green-500 cursor-not-allowed"
+                      : currentMonthIndex < idx
+                        ? "bg-gray-500 cursor-not-allowed"
+                        : currentMonthIndex > idx
+                          ? "bg-red-500 text-white"
+                          : "bg-blue-500 hover:bg-blue-600 text-white"}`}
                     disabled={
                       currentMonthIndex < idx ||
-                      studentPayments[month] === "paid"
+                      (studentPayments[month]?.paymentStatus === "paid" &&
+                        studentPayments[month]?.year === currentYear)
                     }
                     onClick={() =>
                       handlePayment(
@@ -157,23 +160,18 @@ const TutionFees = () => {
                           (examFeeMonths[month] || 0) +
                           (otherFeeMonths.find((item) => item.month === month)
                             ?.fee || 0),
-                        month
+                        month,
                       )
                     }
                   >
-                    {currentMonthIndex < idx &&
-                    studentPayments?.[month] !== "paid"
-                      ? "Upcoming"
-                      : currentMonthIndex > idx &&
-                        studentPayments?.[month] === "paid"
+                    {studentPayments[month]?.paymentStatus === "paid" &&
+                    studentPayments[month]?.year === currentYear
                       ? "Paid"
-                      : currentMonthIndex === idx &&
-                        studentPayments?.[month] !== "paid"
-                      ? "Pay Now"
-                      : currentMonthIndex === idx &&
-                        studentPayments?.[month] === "paid"
-                      ? "Paid"
-                      : "Due"}
+                      : currentMonthIndex < idx
+                        ? "Upcoming"
+                        : currentMonthIndex > idx
+                          ? "Due"
+                          : "Pay Now"}
                   </button>
                 </td>
               </tr>
